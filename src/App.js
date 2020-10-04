@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import Search from "./Search";
 import Overview from "./Overview";
+import Footer from "./Footer";
 
 import "./App.css";
 
@@ -15,6 +16,8 @@ function App() {
             <Search />
             <Overview />
           </div>
+          <br />
+          <Footer />
         </div>
       </div>
     </div>

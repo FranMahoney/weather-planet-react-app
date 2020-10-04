@@ -1,0 +1,10 @@
+.Footer .sourceLink {
+  display: block;
+  margin: 0px;
+  font-size: 12px;
+  padding: 0 0 0 30px;
+}
+.Footer .name {
+  color: black;
+  font-size: 12px;
+}
