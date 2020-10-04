@@ -1,0 +1,41 @@
+.Overview h2 {
+  font-size: 35px;
+  font-family: "Ubuntu", sans-serif;
+}
+.Overview h3 {
+  font-size: 16px;
+  margin: 0 0 0 5px;
+  font-family: "Ubuntu", sans-serif;
+}
+.Overview .temperature-wrapper {
+  position: relative;
+  z-index: 10;
+}
+.Overview .temperature {
+  font-size: 85px;
+  font-family: "Ubuntu", sans-serif;
+}
+
+.Overview .main-icon {
+  width: 120px;
+  margin: -42px -14px;
+  padding: 0px;
+  position: relative;
+  z-index: 1;
+}
+.Overview li {
+  list-style: none;
+  font-size: 16px;
+  font-family: "Ubuntu", sans-serif;
+  line-height: 30px;
+}
+.Overview .sunrise-sunset {
+  padding: 0 0 0 5px;
+}
+.Overview .sunrise-icon,
+.sunset-icon {
+  width: 50px;
+}
+.Overview .col-2 {
+  padding: 0px 10px;
+}
