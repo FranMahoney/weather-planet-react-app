@@ -13,17 +13,26 @@ export default function Overview() {
         fonts={[
           {
             font: "Ubuntu",
+            style: "normal",
             weights: [400],
+            display: "swap",
           },
         ]}
-        subsets={["cyrillic-ext", "greek"]}
+        subsets={[
+          "cyrillic-ext",
+          "cyrillic",
+          "greek-ext",
+          "latin",
+          "latin-ext",
+          "greek",
+        ]}
       />
       <div>
         <br />
-        <h2 id="city-display" style={{ fontfamily: "Ubuntu" }}>
+        <h2 id="city-display" style={{ fontfamily: "Ubuntu, sans-serif" }}>
           London
         </h2>
-        <h3 id="date" style={{ fontfamily: "Ubuntu" }}>
+        <h3 id="date" style={{ fontfamily: "Ubuntu, sans-serif" }}>
           Saturday 12th September | 13:00
         </h3>
         <br />
@@ -61,7 +70,7 @@ export default function Overview() {
               Sun and cloud
             </li>
             <li className="temp-description">
-              Wind: <span id="wind"></span> km/h
+              Wind: <span id="wind"></span> 6 km/h
             </li>
             <li className="temp-description">
               Humidity: <span id="humidity"></span>%
