@@ -1,11 +1,19 @@
 .Overview h2 {
   font-size: 35px;
   font-family: "Ubuntu", sans-serif;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  line-height: 1.2;
 }
 .Overview h3 {
   font-size: 16px;
-  margin: 0 0 0 5px;
+  margin: 0 0 0 0px;
   font-family: "Ubuntu", sans-serif;
+  font-weight: 500;
+  line-height: 1.2;
+}
+ul {
+  padding: 0px 0px 0px 0px;
 }
 .Overview .temperature-wrapper {
   position: relative;
@@ -27,7 +35,8 @@
   list-style: none;
   font-size: 16px;
   font-family: "Ubuntu", sans-serif;
-  line-height: 30px;
+  margin-top: 5px;
+  line-height: 32px;
 }
 .Overview .sunrise-sunset {
   padding: 0 0 0 5px;
