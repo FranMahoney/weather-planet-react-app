@@ -12,7 +12,7 @@
   font-weight: 500;
   line-height: 1.2;
 }
-ul {
+.Overview ul {
   padding: 0px 0px 0px 0px;
 }
 .Overview .temperature-wrapper {

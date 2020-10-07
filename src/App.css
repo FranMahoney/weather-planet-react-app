@@ -1,12 +1,8 @@
-.App body {
-  color: white;
-  font-family: "Ubuntu", sans-serif;
-}
-
-h2 {
+.App h2 {
   font-size: 35px;
 }
-h3 {
+
+.App h3 {
   font-size: 16px;
   margin: 0 0 0 5px;
 }
