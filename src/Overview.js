@@ -4,14 +4,17 @@ import axios from "axios";
 
 import DayForecast from "./DayForecast";
 import WeekForecast from "./WeekForecast";
+import FormatDate from "./FormatDate";
 import "./Overview.css";
 
-export default function Overview() {
+export default function Overview(props) {
   const [weather, setWeather] = useState({ loaded: false });
   function handleResponse(response) {
+    console.log(response.data);
     setWeather({
       loaded: true,
       city: response.data.name,
+      date: new Date(response.data.dt * 1000),
       temperature: response.data.main.temp,
       description: response.data.weather[0].description,
       humidity: Math.round(response.data.main.humidity),
@@ -47,7 +50,7 @@ export default function Overview() {
             {weather.city}
           </h2>
           <h3 id="date" style={{ fontfamily: "Ubuntu, sans-serif" }}>
-            Saturday 12th September | 13:00
+            <FormatDate date={weather.date} />
           </h3>
           <br />
         </div>
@@ -122,9 +125,8 @@ export default function Overview() {
       </div>
     );
   } else {
-    let city = "London";
     const apiKey = "7078ca8e45a8e54ad9b485826d119586";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${props.city}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(handleResponse);
 
     return "Loading weather...";
