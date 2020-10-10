@@ -1,7 +1,5 @@
 import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-
-import Search from "./Search";
+import GoogleFontLoader from "react-google-font-loader";
 import Overview from "./Overview";
 import Footer from "./Footer";
 
@@ -13,8 +11,25 @@ function App() {
       <div className="Container">
         <div className="container-body">
           <div className="weather-app-body">
-            <Search />
-            <Overview />
+            <GoogleFontLoader
+              fonts={[
+                {
+                  font: "Ubuntu",
+                  style: "normal",
+                  weights: [400],
+                  display: "swap",
+                },
+              ]}
+              subsets={[
+                "cyrillic-ext",
+                "cyrillic",
+                "greek-ext",
+                "latin",
+                "latin-ext",
+                "greek",
+              ]}
+            />
+            <Overview city="London" />
           </div>
           <br />
           <Footer />

@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import GoogleFontLoader from "react-google-font-loader";
 import axios from "axios";
 
 import DayForecast from "./DayForecast";
 import WeekForecast from "./WeekForecast";
-import FormatDate from "./FormatDate";
+import WeatherData from "./WeatherData";
 import "./Overview.css";
 
 export default function Overview(props) {
+  const [city, setCity] = useState(props.city);
   const [weather, setWeather] = useState({ loaded: false });
   function handleResponse(response) {
     console.log(response.data);
@@ -23,99 +23,55 @@ export default function Overview(props) {
     });
   }
 
+  function search() {
+    const apiKey = "7078ca8e45a8e54ad9b485826d119586";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(handleResponse);
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    search();
+  }
+
+  function handleCitySearch(event) {
+    setCity(event.target.value);
+  }
+
   if (weather.loaded) {
     return (
       <div className="Overview">
-        <GoogleFontLoader
-          fonts={[
-            {
-              font: "Ubuntu",
-              style: "normal",
-              weights: [400],
-              display: "swap",
-            },
-          ]}
-          subsets={[
-            "cyrillic-ext",
-            "cyrillic",
-            "greek-ext",
-            "latin",
-            "latin-ext",
-            "greek",
-          ]}
-        />
-        <div>
-          <br />
-          <h2 id="city-display" style={{ fontfamily: "Ubuntu, sans-serif" }}>
-            {weather.city}
-          </h2>
-          <h3 id="date" style={{ fontfamily: "Ubuntu, sans-serif" }}>
-            <FormatDate date={weather.date} />
-          </h3>
-          <br />
-        </div>
         <div className="row">
           <div className="col-6">
-            <div className="temperature-wrapper">
-              <span className="temperature" id="temperature">
-                {Math.round(weather.temperature)}
-              </span>
-              <a
-                href=" "
-                id="celsius-link"
-                className="active"
-                style={{ fontfamily: "Ubuntu" }}
-              >
-                °C
-              </a>{" "}
-              |
-              <a href=" " id="fahrenheit-link" style={{ fontfamily: "Ubuntu" }}>
-                °F
-              </a>
-            </div>
-            <br />
-            <img
-              src={weather.icon}
-              alt={weather.description}
-              className="main-icon"
-              id="icon"
-            />
+            <form onSubmit={handleSubmit}>
+              <div className="form-group">
+                <input
+                  type="text"
+                  placeholder="Enter a city"
+                  className="form-control"
+                  autoFocus="on"
+                  autoComplete="off"
+                  id="search-text-input"
+                  onChange={handleCitySearch}
+                />
+              </div>
+              <button type="button" value="Search" className="btn btn-primary">
+                Search
+              </button>
+            </form>
           </div>
           <div className="col-6">
-            <ul>
-              <li className="tempDescription text-capitalize" id="description">
-                {weather.description}
-              </li>
-              <li className="tempDescription">
-                Wind: <span id="wind"> {weather.wind}</span> km/h
-              </li>
-              <li className="tempDescription">
-                Humidity: <span id="humidity"> {weather.humidity}</span>%
-              </li>
-              <li className="tempDescription">
-                <img
-                  src={require("./images/sunrise_new.png")}
-                  alt="sunrise symbol"
-                  className="sunrise-icon"
-                />
-                <span className="sunrise-sunset" id="sunrise">
-                  06:30
-                </span>
-              </li>
-              <li className="temp-description">
-                <img
-                  src={require("./images/sunrise_new.png")}
-                  alt="sunset symbol"
-                  className="sunset-icon"
-                />
-                <span className="sunrise-sunset" id="sunset">
-                  19.30
-                </span>
-              </li>
-            </ul>
+            <button
+              type="button"
+              className="btn btn-success"
+              id="location-button"
+            >
+              Current Location
+            </button>
           </div>
         </div>
         <br />
+        <WeatherData data={weather} />
         <br />
         <div className="Forecast">
           <DayForecast />
@@ -125,10 +81,7 @@ export default function Overview(props) {
       </div>
     );
   } else {
-    const apiKey = "7078ca8e45a8e54ad9b485826d119586";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${props.city}&appid=${apiKey}&units=metric`;
-    axios.get(apiUrl).then(handleResponse);
-
+    search();
     return "Loading weather...";
   }
 }
