@@ -12,7 +12,7 @@ export default function Overview(props) {
   function handleResponse(response) {
     setWeather({
       loaded: true,
-      city: response.data.name,
+      cityName: response.data.name,
       date: new Date(response.data.dt * 1000),
       temperature: response.data.main.temp,
       description: response.data.weather[0].description,
@@ -73,7 +73,7 @@ export default function Overview(props) {
         <WeatherData data={weather} />
         <br />
         <div className="Forecast">
-          <DayForecast />
+          <DayForecast city={weather.cityName} />
         </div>
         <br />
         <WeekForecast />

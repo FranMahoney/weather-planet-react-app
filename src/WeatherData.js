@@ -7,7 +7,7 @@ export default function WeatherData(props) {
   return (
     <div className="WeatherInfo">
       <h2 id="city-display" style={{ fontfamily: "Ubuntu, sans-serif" }}>
-        {props.data.city}
+        {props.data.cityName}
       </h2>
       <h3 id="date" style={{ fontfamily: "Ubuntu, sans-serif" }}>
         <FormatDate date={props.data.date} />
