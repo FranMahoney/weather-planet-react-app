@@ -3,26 +3,12 @@ import WeatherIcon from "./WeatherIcon";
 
 export default function DailyForecast(props) {
   function day() {
-    let forecast = null;
-    for (let index = 0; index < props.data.list.length; index++) {
-      forecast = props.data.list[index];
-      if (
-        index === 1 ||
-        index === 9 ||
-        index === 17 ||
-        index === 25 ||
-        index === 33 ||
-        index === 39
-      ) {
-        let date = new Date(forecast.dt * 1000);
-        let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-        let dayOfTheWeek = days[date.getDay()];
+    let date = new Date(props.data.dt * 1000);
+    let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    let dayOfTheWeek = days[date.getDay()];
 
-        return `${dayOfTheWeek}`;
-      }
-    }
+    return `${dayOfTheWeek}`;
   }
-
   function temperature() {
     const temperature = Math.round(props.data.main.temp);
     return `${temperature}°`;

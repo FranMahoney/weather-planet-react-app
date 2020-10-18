@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import HourlyForecast from "./HourlyForecast";
+import WeekForecast from "./WeekForecast";
 
 import "./DayForecast.css";
 
@@ -15,11 +16,15 @@ export default function DayForecast(props) {
 
   if (loaded && props.city === forecast.city.name) {
     return (
-      <div className="DayForecast row">
-        {forecast.list.slice(0, 6).map(function (forecastItem, index) {
-          return <HourlyForecast key={index} data={forecastItem} />;
-        })}
-      </div>
+      <>
+        <div className="DayForecast row">
+          {forecast.list.slice(0, 6).map(function (forecastItem, index) {
+            return <HourlyForecast key={index} data={forecastItem} />;
+          })}
+        </div>
+        <br />
+        <WeekForecast forecast={forecast} />
+      </>
     );
   } else {
     const apiKey = "7078ca8e45a8e54ad9b485826d119586";

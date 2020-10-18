@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import axios from "axios";
 
 import DayForecast from "./DayForecast";
-import WeekForecast from "./WeekForecast";
 import WeatherData from "./WeatherData";
 import "./Overview.css";
 
@@ -76,7 +75,6 @@ export default function Overview(props) {
           <DayForecast city={weather.cityName} />
         </div>
         <br />
-        <WeekForecast />
       </div>
     );
   } else {
