@@ -40,9 +40,7 @@ export default function WeatherData(props) {
                 alt="sunrise symbol"
                 className="sunrise-icon"
               />
-              <span className="sunrise-sunset" id="sunrise">
-                06:30
-              </span>
+              <span className="sunrise-sunset">{props.data.sunrise}</span>
             </li>
             <li className="temp-description">
               <img
@@ -50,9 +48,7 @@ export default function WeatherData(props) {
                 alt="sunset symbol"
                 className="sunset-icon"
               />
-              <span className="sunrise-sunset" id="sunset">
-                19.30
-              </span>
+              <span className="sunrise-sunset">{props.data.sunset}</span>
             </li>
           </ul>
         </div>

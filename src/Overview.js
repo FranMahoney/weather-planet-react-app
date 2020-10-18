@@ -18,6 +18,8 @@ export default function Overview(props) {
       humidity: Math.round(response.data.main.humidity),
       wind: Math.round(response.data.wind.speed),
       icon: response.data.weather[0].icon,
+      sunrise: response.data.sys.sunrise,
+      sunset: response.data.sys.sunset,
     });
   }
 
@@ -57,15 +59,6 @@ export default function Overview(props) {
                 Search
               </button>
             </form>
-          </div>
-          <div className="col-6">
-            <button
-              type="button"
-              className="btn btn-success"
-              id="location-button"
-            >
-              Current Location
-            </button>
           </div>
         </div>
         <br />

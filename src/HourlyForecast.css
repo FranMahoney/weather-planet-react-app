@@ -1,3 +1,7 @@
+.HourlyForecast {
+  color: #a3cfff;
+}
+
 .HourlyForecast .hours {
   margin: 5px auto;
 }
