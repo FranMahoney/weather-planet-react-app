@@ -18,8 +18,8 @@ export default function Overview(props) {
       humidity: Math.round(response.data.main.humidity),
       wind: Math.round(response.data.wind.speed),
       icon: response.data.weather[0].icon,
-      sunrise: response.data.sys.sunrise,
-      sunset: response.data.sys.sunset,
+      sunrise: new Date(response.data.sys.sunrise * 1000),
+      sunset: new Date(response.data.sys.sunset * 1000),
     });
   }
 
