@@ -1,59 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
+
+import DailyForecast from "./DailyForecast";
+
 import "./WeekForecast.css";
 
-export default function WeekForecast() {
-  return (
-    <div className="WeekForecast">
-      <div className="row" id="dailyForecast">
-        <div className="col-2">
-          <h3 className="day">Sun</h3>
-          <img src=" " alt="cloudy" className="weeklyTempIcon" />
-          <h3>
-            <span className="temp-max">12</span>°
-            <span className="temp-min">11</span>°
-          </h3>
-        </div>
-        <div className="col-2">
-          <h3 className="day">Mon</h3>
-          <img src=" " alt="cloudy" className="weeklyTempIcon" />
-          <h3>
-            <span className="temp-max">12</span>°
-            <span className="temp-min">11</span>°
-          </h3>
-        </div>
-        <div className="col-2">
-          <h3 className="day">Tue</h3>
-          <img src=" " alt="cloudy" className="weeklyTempIcon" />
-          <h3>
-            <span className="temp-max">12</span>°
-            <span className="temp-min">11</span>°
-          </h3>
-        </div>
-        <div className="col-2">
-          <h3 className="day">Wed</h3>
-          <img src=" " alt="cloudy" className="weeklyTempIcon" />
-          <h3>
-            <span className="temp-max">12</span>°
-            <span className="temp-min">11</span>°
-          </h3>
-        </div>
-        <div className="col-2">
-          <h3 className="day">Thu</h3>
-          <img src=" " alt="cloudy" className="weeklyTempIcon" />
-          <h3>
-            <span className="temp-max">12</span>°
-            <span className="temp-min">11</span>°
-          </h3>
-        </div>
-        <div className="col-2">
-          <h3 className="day">Fri</h3>
-          <img src=" " alt="cloudy" className="weeklyTempIcon" />
-          <h3>
-            <span className="temp-max">12</span>°
-            <span className="temp-min">11</span>°
-          </h3>
-        </div>
+export default function WeekForecast(props) {
+  const [loaded, setLoaded] = useState(false);
+  const [forecast, setWeekForecast] = useState(null);
+
+  function handleForecastResponse(response) {
+    setWeekForecast(response.data);
+    setLoaded(true);
+  }
+
+  if (loaded && props.city === forecast.city.name) {
+    return (
+      <div className="WeekForecast row">
+        {forecast.list.slice(0, 6).map(function (forecastItem) {
+          return <DailyForecast data={forecastItem} />;
+        })}
       </div>
-    </div>
-  );
+    );
+  } else {
+    const apiKey = "7078ca8e45a8e54ad9b485826d119586";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${props.city}&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(handleForecastResponse);
+    return null;
+  }
 }

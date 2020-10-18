@@ -4,7 +4,7 @@ import WeatherIcon from "./WeatherIcon";
 export default function DailyForecast(props) {
   function day() {
     let forecast = null;
-    for (const index = 0; index < props.data.list.length; index++) {
+    for (let index = 0; index < props.data.list.length; index++) {
       forecast = props.data.list[index];
       if (
         index === 1 ||
